@@ -35,7 +35,8 @@ class Pagination:
                 last = num
 
 app = Flask(__name__)
-app.config.from_object(config['development'])
+env = os.environ.get('FLASK_ENV', 'development')
+app.config.from_object(config.get(env, config['default']))
 # ──────────────────────────────────────────────────────────────────
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
