@@ -11,7 +11,12 @@ class Config:
     MYSQL_USER = os.environ.get('MYSQL_USER', 'root')
     MYSQL_PASSWORD = os.environ.get('MYSQL_PASSWORD', 'Rishi@2207')
     MYSQL_DB = os.environ.get('MYSQL_DB', 'jewelux')
+    MYSQL_PORT = int(os.environ.get('MYSQL_PORT', 3306))
     MYSQL_CURSORCLASS = 'DictCursor'
+    
+    # Optional SSL (some production providers require it)
+    if os.environ.get('MYSQL_SSL_CA'):
+        MYSQL_SSL = {'ca': os.environ.get('MYSQL_SSL_CA')}
     
     # Upload config
     UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'uploads', 'products')
